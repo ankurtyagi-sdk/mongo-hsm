@@ -2,7 +2,9 @@
 # Copyright (c) 2023 by Delphix. All rights reserved.
 #
 
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel
+from pydantic import Field
+from pydantic import constr
 
 
 class ApiVersion(BaseModel):

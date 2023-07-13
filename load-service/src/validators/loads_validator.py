@@ -15,7 +15,7 @@ from pydantic import constr
 class ConnectorResponse(BaseModel):
     id: Optional[int] = Field(
         None, description="The Connector object entity ID."
-    )
+    )  # noqa
     jdbc_url: str = Field(..., description="The jdbc_url of this connector.")
     user: constr(min_length=1, max_length=256) = Field(
         ..., description="The username of this connector."
@@ -157,10 +157,10 @@ class PostLoadResponse(BaseModel):
     id: Optional[int] = None
     execution_id: Optional[int] = Field(
         None, description="Post Load Response model."
-    )
+    )  # noqa
     status: Status1 = Field(
         ..., description="The status of the post load process."
-    )
+    )  # noqa
     start_time: str = Field(
         ..., description="The time when the load process is started."
     )

@@ -3,12 +3,12 @@
 #
 
 [tool.poetry]
-name = "mongo-load-service"
+name = "load-service"
 version = "1.0.0"
 description = "Mongo Hyperscale Compliance Load Service"
 authors = []
 readme = "README.md"
-packages = [{include = "mongo_load_service"}]
+packages = [{include = "load-service"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"

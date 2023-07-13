@@ -1,0 +1,10 @@
+#
+# Copyright (c) 2023 by Delphix. All rights reserved.
+#
+
+venv/
+.venv/
+__pycache__/
+.idea/
+/load_data.db
+build/

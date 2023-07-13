@@ -4,7 +4,8 @@
 
 from fastapi import APIRouter
 from src.validators.executions_validator import ExecutionStatus
-from src.validators.loads_validator import LoadResponse, PostLoadResponse
+from src.validators.loads_validator import LoadResponse
+from src.validators.loads_validator import PostLoadResponse
 from starlette import status
 
 router = APIRouter(
