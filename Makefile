@@ -4,7 +4,10 @@
 .PHONY: compose-up compose-down compose-clean
 
 VERSION := 8.0.0
+ROOT_DIR := $(shell pwd)
 HSC_COMMON_CONTAINER_IMAGES := delphix-hyperscale-masking
+VENV_UNLOAD := $(ROOT_DIR)/unload-service/.venv
+VENV_LOAD := $(ROOT_DIR)/load-service/.venv
 
 define make_unload
 	-@echo "Creating Unload Service env"
@@ -23,13 +26,13 @@ define clean
 	@cd load-service && make docker-rm && make clean_env
 endef
 
-unload-service/.venv:
+$(VENV_UNLOAD):
 	-$(call make_unload)
 
-load-service/.venv:
+$(VENV_LOAD):
 	-$(call make_load)
 
-compose-up: unload-service/.venv load-service/.venv
+compose-up: $(VENV_UNLOAD) $(VENV_LOAD)
 	@# Help: Start all containers services inside mongo
 	-@docker load -i $(HSC_COMMON_CONTAINER_IMAGES)-$(VERSION)/masking-service.tar
 	-@docker load -i $(HSC_COMMON_CONTAINER_IMAGES)-$(VERSION)/controller-service.tar
@@ -42,7 +45,7 @@ compose-down:
 	-@docker-compose down
 
 compose-clean: compose-down
-	@# Help: Cleans env and image created by the compose-up command'
+	@# Help: Cleans env and image created by the compose-up command
 	$(call clean)
 
 
