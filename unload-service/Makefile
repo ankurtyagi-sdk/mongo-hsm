@@ -19,7 +19,7 @@ DOCKER_IMAGE_NAME := delphix-mongo-unload-service-app
 DOCKER_BUILD_NAME := mongo-unload-service.tar
 USER := $(shell whoami)
 LOG_FOLDER := /opt/delphix/logs/
-VERSION := latest
+IMG_VERSION := latest
 
 define check_python_exists
 	@if ! command -v python3.9 -V >/dev/null 2>&1; then \
@@ -95,11 +95,11 @@ clean: clean_build
 
 docker-image:
 	@# Help: Creates the docker image
-	-@docker build -t $(DOCKER_IMAGE_NAME):$(VERSION) .
+	-@docker build -t $(DOCKER_IMAGE_NAME):$(IMG_VERSION) .
 
 docker-run: docker-rm docker-image
 	@# Help: Runs the docker container using the created image
-	-@docker run -d -p 8082:8080 --name $(DOCKER_CONTAINER_NAME) $(DOCKER_IMAGE_NAME):$(VERSION)
+	-@docker run -d -p 8082:8080 --name $(DOCKER_CONTAINER_NAME) $(DOCKER_IMAGE_NAME):$(IMG_VERSION)
 	-@docker ps
 	-@echo "The $(DOCKER_CONTAINER_NAME) swagger UI can be accessed at http://0.0.0.0:8082"
 
@@ -117,13 +117,13 @@ docker-stop:
 docker-rm: docker-stop
 	@# Help: Removes the docker container
 	-@docker rm $(DOCKER_CONTAINER_NAME)
-	-@docker image rm $(DOCKER_IMAGE_NAME):$(VERSION)
+	-@docker image rm $(DOCKER_IMAGE_NAME):$(IMG_VERSION)
 	-@echo "Removed the container and image"
 
 docker-save: clean_build docker-image
 	@# Help: Save the docker images to build folder
 	-@mkdir build
-	-@docker save $(DOCKER_IMAGE_NAME):$(VERSION) -o build/$(DOCKER_BUILD_NAME)
+	-@docker save $(DOCKER_IMAGE_NAME):$(IMG_VERSION) -o build/$(DOCKER_BUILD_NAME)
 
 --export_lang:
 	LC_ALL=en_AU.UTF-8

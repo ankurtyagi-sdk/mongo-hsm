@@ -2,7 +2,7 @@
 version: "3.7"
 services:
   controller-service:
-    image: delphix-controller-service-app:8.0.0
+    image: delphix-controller-service-app:${VERSION}
     healthcheck:
       test: 'curl --fail --silent http://localhost:8080/actuator/health | grep UP || exit 1'
       interval: 30s
@@ -53,7 +53,7 @@ services:
       #- mount/path/on/host/:/etc/hyperscale
 
   masking-service:
-    image: delphix-masking-service-app:8.0.0
+    image: delphix-masking-service-app:${VERSION}
     init: true
     ports:
       - "8083:8080"
@@ -95,7 +95,7 @@ services:
       # Uncomment below lines to mount respective paths.
       #- mount/path/on/host/:/etc/hyperscale
   proxy:
-    image: delphix-hyperscale-masking-proxy:8.0.0
+    image: delphix-hyperscale-masking-proxy:${VERSION}
     init: true
     networks:
       - hyperscale-net
