@@ -3,9 +3,13 @@
 #
 
 from enum import Enum
-from typing import Dict, List, Optional
+from typing import Dict
+from typing import List
+from typing import Optional
 
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel
+from pydantic import Field
+from pydantic import constr
 
 
 class SourceConfigs(BaseModel):
@@ -45,7 +49,9 @@ class DataInfoItem1(BaseModel):
     unload_file_path: constr(min_length=1) = Field(
         ..., description="relative path of the unload source file."
     )
-    status: Status = Field(..., description="The status of the unload process.")  # noqa
+    status: Status = Field(
+        ..., description="The status of the unload process."
+    )  # noqa
     error: Optional[str] = Field(None, description="Exception details.")
 
 
@@ -54,7 +60,9 @@ class ExecutionStatus(BaseModel):
     Pydantic Model for ExecutionStatus
     """
 
-    status: Status = Field(..., description="The status of the Unload process.")  # noqa
+    status: Status = Field(
+        ..., description="The status of the Unload process."
+    )  # noqa
     error: Optional[str] = Field(None, description="Optional, error detail.")
 
 
@@ -93,7 +101,8 @@ class SourceInfoItem(BaseModel):
         description="Total number of rows unloaded from the database table.",  # noqa
     )
     masking_split_count: Optional[int] = Field(
-        None, description="The number of masked splitted files to be generated."  # noqa
+        None,
+        description="The number of masked splitted files to be generated.",  # noqa
     )
 
 

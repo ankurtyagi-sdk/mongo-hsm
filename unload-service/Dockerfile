@@ -1,3 +1,7 @@
+#
+# Copyright (c) 2023 by Delphix. All rights reserved.
+#
+
 FROM python:3.9-slim as build
 
 WORKDIR /app

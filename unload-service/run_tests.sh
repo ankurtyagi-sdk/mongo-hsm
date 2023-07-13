@@ -4,7 +4,7 @@
 #
 
 echo 'Working directory' `pwd`
-cd mongo-unload-service
+cd unload-service
 
 make tests
 exit_status=$?
@@ -13,3 +13,4 @@ if [ $exit_status -ne 0 ]; then
     make clean
     exit $exit_status
 fi
+make clean

@@ -1,9 +1,12 @@
 #
 # Copyright (c) 2023 by Delphix. All rights reserved.
 #
-from typing import List, Optional
+from typing import List
+from typing import Optional
 
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel
+from pydantic import Field
+from pydantic import constr
 
 
 class DataInfoItem(BaseModel):

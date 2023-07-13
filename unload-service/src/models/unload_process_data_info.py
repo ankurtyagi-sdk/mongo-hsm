@@ -2,7 +2,9 @@
 #
 # Copyright (c) 2023 by Delphix. All rights reserved.
 #
-from sqlalchemy import Column, Integer, Text
+from sqlalchemy import Column
+from sqlalchemy import Integer
+from sqlalchemy import Text
 from src.db.connection import Base
 
 

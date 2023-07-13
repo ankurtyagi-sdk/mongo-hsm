@@ -19,7 +19,7 @@ repos:
       - id: isort
 
   - repo: https://github.com/jorgetomtz/pre-commit-hooks
-    rev: v0.2.1
+    rev: v0.2.4
     hooks:
       - id: copyright-check
         args: ["-o", "Delphix"]
@@ -28,25 +28,11 @@ repos:
             .*\.zip|
             .*__init__.py|
             .flake8|
-            .github/ISSUE_TEMPLATE/bug_report.md|
-            .github/ISSUE_TEMPLATE/feature_request.md|
-            .gitignore|
-            .isort.cfg|
-            .pre-commit-config.yaml|
-            CODE_OF_CONDUCT.md|
-            CONTRIBUTING.md|
-            Pipfile|
-            README.md|
-            SUPPORT.md|
-            db-files/.*.sqlite|
-            db-files/.*.jinja2|
             .*.pylintrc|
-            .*.gitignore|
             .*.coveragerc|
             .*poetry.lock|
             .*.dockerignore|
-            .*Dockerfile|
-            .*mako|
+            .*.mako|
           )$
 
   - repo: local
@@ -55,10 +41,10 @@ repos:
       name: pytest-check-unload
       stages: [commit]
       types: [python]
-      entry: mongo-unload-service/run_tests.sh
+      entry: unload-service/run_tests.sh
       language: script
       pass_filenames: false
-      files: ^mongo-unload-service/.*.py
+      files: ^unload-service/.*.py
 
   - repo: local
     hooks:
@@ -66,7 +52,7 @@ repos:
         name: pytest-check-load
         stages: [ commit ]
         types: [ python ]
-        entry: mongo-load-service/run_tests.sh
+        entry: load-service/run_tests.sh
         language: script
         pass_filenames: false
-        files: ^mongo-load-service/.*.py
+        files: ^load-service/.*.py
